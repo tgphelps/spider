@@ -18,6 +18,34 @@ class Tableau:
                 p.down_cards = deck.deal(5)
             else:
                 p.down_cards = deck.deal(4)
+        self.next_deal(deck)
+
+    def next_deal(self, deck: Deck.Deck):
+        for p in self.piles:
+            p.up_cards.append(deck.deal(1)[0])
+
+    def show(self) -> None:
+        print('----' * NUM_PILES)
+        self.show_down_cards()
+        print('----' * NUM_PILES)
+        self.show_up_cards()
+        print('----' * NUM_PILES)
+
+    def show_down_cards(self) -> None:
+        m = [len(self.piles[i].down_cards) for i in range(NUM_PILES)]
+        n = max(m)
+        for i in range(n):
+            s = ['   X' if x > i else '   ' for x in m]
+            print(''.join(s))
+
+    def show_up_cards(self) -> None:
+        m = [len(self.piles[i].up_cards) for i in range(NUM_PILES)]
+        n = max(m)
+        for i in range(n):
+            # s = ['  X' if x > i else '   ' for x in m]
+            s = ['   ' + Deck.display(self.piles[j].up_cards[i])
+                 for j in range(NUM_PILES)]
+            print(''.join(s))
 
 
 class Pile:
@@ -34,3 +62,8 @@ if __name__ == '__main__':
 
     for p in tab.piles:
         print([Deck.display(c) for c in p.down_cards])
+        print(Deck.display(p.up_cards[0]))
+
+    print()
+    print()
+    tab.show()

@@ -7,7 +7,7 @@ assert len(DECK) == 104
 
 SEED = 'This is my random seed for testing.'
 
-pic = {11: 'J', 12: 'Q', 13: 'K', 1: 'A'}
+pic = {10: 'T', 11: 'J', 12: 'Q', 13: 'K', 1: 'A'}
 
 
 class Deck:
@@ -37,7 +37,7 @@ class Deck:
 
 
 def display(c: int) -> str:
-    if c > 1 and c < 11:
+    if c > 1 and c < 10:
         return str(c)
     else:
         return pic[c]
